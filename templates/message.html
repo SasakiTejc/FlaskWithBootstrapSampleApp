@@ -1,0 +1,76 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Login
+{% endblock %}
+
+{% block headline %}
+{{title}}
+{% endblock %}
+
+{% block content %}
+
+    <div class="text-right h6">
+        <a href="logout">Logout</a>
+    </div>
+    <div class="alert alert-success p-1">
+        <h5>{{message}}</h5>
+    </div>
+
+    <!--切り替えタブ部分-->
+    <ul class="nav nav-tabs" role="tablist">
+        <!--一つ目のタブ-->
+        <li class="nav-item">
+            <a class="nav-link active" href="#mdgs" data-toggle="tab" role="tab">Message</a>
+        </li>
+        
+        <!--二つ目のタブ-->
+        <li class="nav-item">
+            <a class="nav-link" href="#frms" data-toggle="tab" role="tab">Form</a>
+        </li>
+    </ul>
+
+    <!--コンテンツ部分-->
+    <div class="tab-content">
+        <!--一つ目のコンテンツ-->
+        <div class="tab-pane fade show active" id="msgs" ole="tabpanel">
+            <h5 class="p-3 h5 text-conter">
+                * Posted Message *
+            </h5>
+            <ul class="list-group list-group-flush">
+                {% for item in data | reverse %}
+                <li class="list-group-item">
+                     {{item[1]}}({{item[0]}})
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!--二つ目のコンテンツ-->
+        <div class="tab-pane fade" id="frms" role="tabpanel">
+            <h5 class="mt-4">
+                Post your message:
+            </h5>
+            <div class="card mt-4">
+                <div class="card-body">
+                    <form method="post" action="/">
+                        <div class="form-group">
+                            <label for="comment">Message</label>
+                            <div class="row">
+                                <input type="text" class="form-control col" id="comment" name="comment">
+                                <input class="btn btn-primary col-3 col-sm-3 col-md-2 col-lg-2 col-xl-2" type="submit" value="POST NOW!">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+
+{% endblock %}
+
+{% block fotter%}
+copyright sasaki
+{% endblock %}
